@@ -1,13 +1,15 @@
 [project]
-name = "aiagnet"
+name = "gcp-specialist-coding-agent"
 version = "0.1.0"
-description = "Add your description here"
+description = "Autonomous GCP Specialist Engineering and Coding Agent powered by Google Gemini and live Cloud CLI tooling"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "crawl4ai>=0.9.3",
     "google-genai>=2.19.0",
     "mypy>=2.3.1",
+    "prompt-toolkit>=3.0.53",
+    "pymongo>=4.19.0",
     "python-dotenv>=1.2.3",
     "rich>=15.0.0",
     "tavily-python>=0.8.4",

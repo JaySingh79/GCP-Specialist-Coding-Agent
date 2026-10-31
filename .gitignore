@@ -5,6 +5,50 @@ build/
 dist/
 wheels/
 *.egg-info
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 # Virtual environments
-.venv
+.venv/
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Project specific - life notes (private)
+life.txt
+life copy.md
+life*.txt
+life*.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs & temp outputs
+*.log
+logs/
+batching_tool.log
+response.json
+crawl_testing.json
+testin.json
+testing.json
+empty-policy.json
+new-policy.json
+mongodb_env/
+
+# Crawler raw data cache
+gcloud_cli_data/
+
