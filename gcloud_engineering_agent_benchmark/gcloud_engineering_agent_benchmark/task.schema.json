@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Google Cloud Engineering Agent Benchmark Task",
+  "type": "object",
+  "required": [
+    "task_id",
+    "split",
+    "phase",
+    "level",
+    "difficulty",
+    "execution_mode",
+    "task_prompt",
+    "environment_fixtures",
+    "required_steps",
+    "safety_invariants",
+    "success_criteria",
+    "failure_injections",
+    "expected_agent_policy",
+    "approval_required",
+    "tags",
+    "references",
+    "operation_kind",
+    "risk_level",
+    "preconditions",
+    "expected_state_diff",
+    "allowed_tool_calls",
+    "forbidden_tool_calls",
+    "rollback_strategy",
+    "max_retry_count",
+    "timeout_seconds"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "split": {
+      "enum": [
+        "dev",
+        "eval"
+      ]
+    },
+    "phase": {
+      "type": "string"
+    },
+    "level": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "difficulty": {
+      "type": "string"
+    },
+    "execution_mode": {
+      "type": "string"
+    },
+    "task_prompt": {
+      "type": "string"
+    },
+    "environment_fixtures": {
+      "type": "object"
+    },
+    "required_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "safety_invariants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "success_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "failure_injections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_agent_policy": {
+      "type": "string"
+    },
+    "approval_required": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "operation_kind": {
+      "type": "string"
+    },
+    "risk_level": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "preconditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_state_diff": {
+      "type": "object"
+    },
+    "allowed_tool_calls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_tool_calls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rollback_strategy": {
+      "type": "string"
+    },
+    "max_retry_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "timeout_seconds": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "additionalProperties": false
+}
