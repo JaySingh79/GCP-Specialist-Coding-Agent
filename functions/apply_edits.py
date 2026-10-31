@@ -1,6 +1,5 @@
 import os
 
-
 def make_changes(working_dir, changes, dir='.'):
     
     abs_dir = os.path.abspath(working_dir)

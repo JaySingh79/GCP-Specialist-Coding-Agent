@@ -1,15 +1,23 @@
 import subprocess
 import json
+from rich.console import Console
+
+console = Console()
 
 with open("risk_commands.json", 'r') as f:
     restrict_commands = eval(f.read())
 
 def run_shell_command(command: str, timeout:int=30):
     
+    """
+    This tool is used to run normal powershell/gcloud/bash or other CLI commands in shell/terminal.
+    Don't run python test scripts or python codes using this.
+    Use this to run only CLI commands.
+    """
     if not command:
         return f"Empty string is not a command"
         
-    print(f"running shell..\n{command}")
+    console.print(f"running shell..\n{command}", style="bold yellow")
     command_list = command.split()
     
     if command_list[0] == 'gcloud':
@@ -30,8 +38,8 @@ def run_shell_command(command: str, timeout:int=30):
         if response.stderr == "" and response.stdout == "":
             return f"Error - {command} did not produce any output"
                 
-        elif response.returncode != 0:
-            return f"program exited with code {response.returncode}"
+        # elif response.returncode != 0:
+        #     return f"program exited with code {response.returncode}"
         
         return {
             "Status Code": response.returncode,
@@ -45,7 +53,7 @@ def run_shell_command(command: str, timeout:int=30):
 run_shell_command_function = {
     "type": "function",
     "name": "run_shell_command",
-    "description": "Execute shell/bash/powershell/terminal commands.",
+    "description": "This tool is used to run normal powershell/gcloud/bash or other CLI commands in shell/terminal. Don't run python test scripts or python codes using this. Use this to run only CLI commands.",
     "parameters": {
         "type": "object",
         "properties": {

@@ -7,16 +7,18 @@ def get_file_info(working_dir, dir='.'):
     if not abs_file.startswith(abs_dir):
         return f"Error {dir} is not a file"
     
+    if abs_file.endswith("env"):
+        return "ERROR, restricted file access"
+    
     final_response = ""
     contents = os.listdir()
     for content in contents:
         content_path = os.path.join(abs_dir, content)
         isdir = os.path.isdir(content_path)
         size = os.path.getsize(content_path)
-        final_response += f"- {content}: file size={size} bytes, is_dir={isdir}"
+        final_response += f"- {content}: file size={size} bytes, is_dir={isdir}\n"
     
-    return final_response
-
+    return final_response.strip()
 
 
 get_file_info_function = {

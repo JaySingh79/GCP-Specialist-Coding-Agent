@@ -1,8 +1,12 @@
 import threading
 import time
+from rich.console import Console
+from rich.prompt import Prompt
 from queue import Queue, Empty
-from main import history, agent_main
+from src.main import history, agent_main
 
+
+console = Console() 
 
 class TerminalController:
     def __init__(self):
@@ -11,9 +15,12 @@ class TerminalController:
 
     def listen(self):
         """Continuously listen for terminal input."""
+
+        console.print("\n[bold green]Listening bro..[/bold green]!\n")
         while self.running:
+            
             try:
-                command = input()
+                command = Prompt.ask("[bold cyan]You > [/bold cyan]")
 
                 if command.strip() == "/exit":
                     self.running = False
@@ -41,15 +48,18 @@ def run_agent(controller: TerminalController):
 
         try:
             command = controller.commands.get_nowait()
-
             if command == "/exit":
                 break
 
-            print(f"Received command: {command}")
-
+            console.print(f"\n[bold purple]Recieved command : {command}[/bold purple]")
+            console.print("\n[bold red]Agent working..[/bold red]")
             # Handle command here
-            agent_main(command)
-
+            try:
+                agent_main(command)
+                
+            except Exception as e:
+                print(f'Some error occured : \n{e}')
+            
         except Empty:
             pass
 
@@ -57,12 +67,10 @@ def run_agent(controller: TerminalController):
         # 2. Do agent work
         # ------------------------------------------------
 
-        print("Agent working...")
-
         # Example agent operation
         time.sleep(2)
 
-    print("Agent stopped.")
+    console.print("\n[bold red]Agent stopped.[/bold red]")
 
 
 def main():
@@ -75,10 +83,6 @@ def main():
     )
 
     listener.start()
-
-    print("Agent started.")
-    print("Press Enter to continue.")
-    print("Type /exit to stop.")
 
     # Main agent loop
     run_agent(controller)

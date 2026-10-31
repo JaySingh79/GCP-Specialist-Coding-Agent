@@ -2,8 +2,11 @@ from tavily import TavilyClient
 from dotenv import load_dotenv
 from typing import Literal
 from google import genai
+from rich.console import Console
 import json
-import os 
+import os
+
+console = Console() 
 
 load_dotenv()
 
@@ -43,7 +46,7 @@ get_web_results_function = {
 
 def crawl_webpage(url: str, instruction: str):
     
-    print(f"\n\nCrawling {url}\n\n", 100*"-")
+    console.print(f"\n\nCrawling {url}\n\n", 100*"-", style="bold cyan")
     tavily_client = TavilyClient()
     try:
         
@@ -115,7 +118,7 @@ async def main():
         result = await crawler.arun(
             url="https://stackoverflow.com/questions/76105489/problems-deploying-cloud-functions-on-gcp",
         )
-        print(result.markdown)
+        console.print(result.markdown, style="green")
 
 if __name__ == "__main__":
     asyncio.run(main())
